@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dynamic Product Filter</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #f0f8ff;
+      margin: 0;
+      padding: 30px;
+      text-align: center;
+    }
+    h2 {
+      color: #222;
+      margin-bottom: 20px;
+    }
+    select {
+      padding: 10px;
+      font-size: 16px;
+      border: 2px solid #007BFF;
+      border-radius: 6px;
+      outline: none;
+      cursor: pointer;
+      margin-bottom: 25px;
+      background: #fff;
+      color: #007BFF;
+      font-weight: bold;
+    }
+    .products {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 20px;
+      justify-content: center;
+    }
+    .product {
+      background: #fff;
+      border-radius: 10px;
+      padding: 20px;
+      width: 200px;
+      text-align: center;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+      transition: transform 0.3s ease;
+    }
+    .product:hover {
+      transform: translateY(-5px);
+    }
+    .product h3 {
+      margin: 10px 0;
+      font-size: 18px;
+      color: #007BFF;
+    }
+    .product p {
+      color: #444;
+      font-size: 14px;
+    }
+  </style>
+</head>
+<body>
+  <h2>Dynamic Product Filter</h2>
+
+  <select id="filter">
+    <option value="all">All</option>
+    <option value="shoes">Shoes</option>
+    <option value="shirts">Shirts</option>
+    <option value="gadgets">Gadgets</option>
+  </select>
+
+  <div class="products" id="productList">
+    <div class="product" data-category="shoes">
+      <h3>Running Shoes</h3>
+      <p>Comfortable sports shoes</p>
+    </div>
+    <div class="product" data-category="shoes">
+      <h3>Casual Sneakers</h3>
+      <p>Stylish everyday wear</p>
+    </div>
+    <div class="product" data-category="shirts">
+      <h3>Formal Shirt</h3>
+      <p>Perfect for office</p>
+    </div>
+    <div class="product" data-category="shirts">
+      <h3>T-Shirt</h3>
+      <p>Casual and comfy</p>
+    </div>
+    <div class="product" data-category="gadgets">
+      <h3>Smartphone</h3>
+      <p>Latest model with great features</p>
+    </div>
+    <div class="product" data-category="gadgets">
+      <h3>Headphones</h3>
+      <p>Noise cancelling over-ear</p>
+    </div>
+  </div>
+
+  <script>
+    const filter = document.getElementById("filter");
+    const products = document.querySelectorAll(".product");
+
+    filter.addEventListener("change", () => {
+      const value = filter.value;
+      products.forEach(product => {
+        if (value === "all" || product.dataset.category === value) {
+          product.style.display = "block";
+        } else {
+          product.style.display = "none";
+        }
+      });
+    });
+  </script>
+</body>
+</html>
